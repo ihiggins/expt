@@ -1,3 +1,4 @@
+import TextField from "@mui/material/TextField";
 import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { query } from "../Service/Atoms";
@@ -14,13 +15,8 @@ const Search = () => {
   }, []);
 
   return (
-    <div>
-      <input
-        id="CLIP"
-        type="text"
-        value={clip}
-        onChange={(e) => setClip(e.target.value)}
-      />
+    <div className="clip-display">
+      <div className="clip-text">{clip}</div>
     </div>
   );
 };

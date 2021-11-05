@@ -5,11 +5,14 @@ import "./App.css";
 import Search from "../Components/Search";
 import { RecoilRoot } from "recoil";
 import Draw from "../Components/Draw";
+import Nav from "../Components/Nav";
+
+import { Divider } from "@mui/material";
 
 const App = () => {
   return (
     <div className="app">
-      This is the main div?
+      <Nav />
       <Search />
       <Draw />
     </div>

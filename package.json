@@ -90,44 +90,20 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "@electron/remote": "^2.0.1",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.5",
+    "@mui/material": "^5.0.6",
     "cheerio": "^1.0.0-rc.10",
     "clipboard-event": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
     "fs": "^0.0.1-security",
     "node-fetch": "^3.0.0",
     "recoil": "^0.4.1",
-    "string-similarity": "^4.0.4",
-    "assert": "assert",
-    "buffer": "buffer",
-    "console": "console-browserify",
-    "constants": "constants-browserify",
-    "crypto": "crypto-browserify",
-    "domain": "domain-browser",
-    "events": "events",
-    "http": "stream-http",
-    "https": "https-browserify",
-    "os": "os-browserify/browser",
-    "path": "path-browserify",
-    "punycode": "punycode",
-    "process": "process/browser",
-    "querystring": "querystring-es3",
-    "stream": "stream-browserify",
-    "_stream_duplex": "readable-stream/duplex",
-    "_stream_passthrough": "readable-stream/passthrough",
-    "_stream_readablev": "readable-stream/readable",
-    "_stream_transform": "readable-stream/transform",
-    "_stream_writable": "readable-stream/writable",
-    "string_decoder": "string_decoder",
-    "sys": "util",
-    "timers": "timers-browserify",
-    "tty": "tty-browserify",
-    "url": "url",
-    "util": "util",
-    "vm": "vm-browserify",
-    "zlib": "browserify-zlib"
-
-
-  },"browser": {
-    "[module-name]": false   
+    "string-similarity": "^4.0.4"
+  },
+  "browser": {
+    "[module-name]": false
   }
 }

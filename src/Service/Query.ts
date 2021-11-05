@@ -6,10 +6,10 @@ import fetch from "node-fetch";
 
 const getSnips = async (query: string) => {
   const response = await fetch(
-    `https://www.googleapis.com/customsearch/v1?siterestrict?key=${gKey}&cx=918d0b1fbc2166b72&q=${query}`
+    `https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=918d0b1fbc2166b72&q=${query}`
   );
 
-  console.log(response.status)
+  console.log(response.status);
   if (response.status !== 200) return false;
   const body = await response.text();
 
@@ -34,7 +34,7 @@ const getPage = async (query: string) => {
 
 const getAnswers = async (query: string) => {
   var snips = await getSnips(query);
-  console.log(snips)
+  console.log(snips);
   if (!snips) return false;
 
   console.log("pulled: ", snips.items.length);
@@ -54,12 +54,12 @@ const getAnswers = async (query: string) => {
 
   let ans = [];
 
-  console.log(match)
+  console.log(match);
   for (var i = 0; i < match.ratings.length; i++) {
     if (match.ratings[i].rating < 0.5) continue;
     ans.push({
       question: match.ratings[i].target,
-      match: match.ratings[i].rating,
+      match: round(match.ratings[i].rating * 100, 1),
       answer: dict[match.ratings[i].target],
     });
   }
@@ -67,3 +67,8 @@ const getAnswers = async (query: string) => {
 };
 
 export { getSnips, getAnswers };
+
+function round(value, precision) {
+  var multiplier = Math.pow(10, precision || 0);
+  return Math.round(value * multiplier) / multiplier;
+}
