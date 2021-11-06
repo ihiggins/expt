@@ -34,8 +34,8 @@ const getPage = async (query: string) => {
 
 const getAnswers = async (query: string) => {
   var snips = await getSnips(query);
-  console.log(snips);
-  if (!snips) return false;
+  console.log(snips );
+  if (!snips || snips.searchInformation.totalResults === 0) return false;
 
   console.log("pulled: ", snips.items.length);
 

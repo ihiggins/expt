@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import HorizontalRuleOutlinedIcon from '@mui/icons-material/HorizontalRuleOutlined';
 import { IconButton } from "@mui/material";
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
 const Nav = () => {
   // let w = BrowserWindow.getCurrentWindow()
@@ -19,9 +20,11 @@ const Nav = () => {
     <div className="nav">
       EXPT
       <div className="nav-control">
-      
         <IconButton aria-label="close" color="primary" onClick={handleMin}>
           <HorizontalRuleOutlinedIcon />
+        </IconButton>
+        <IconButton color="warning" aria-label="settings">
+          <SettingsOutlinedIcon />
         </IconButton>
         <IconButton color="error" aria-label="close" onClick={handleClose}>
           <CloseOutlinedIcon />
