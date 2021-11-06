@@ -15,8 +15,11 @@ const Search = () => {
   }, []);
 
   return (
-    <div className="clip-display">
-      <div className="clip-text">{clip}</div>
+    <div className="search">
+      <div className="sub-heading">Selected Question</div>
+      <div className="clip-display">
+        <div className="clip-text">{clip}</div>
+      </div>
     </div>
   );
 };

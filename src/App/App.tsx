@@ -13,8 +13,16 @@ const App = () => {
   return (
     <div className="app">
       <Nav />
-      <Search />
-      <Draw />
+      <div className="content">
+        <div className="left">
+          <div className="left-header">Past Querys</div>
+          <div className="left-content"></div>
+        </div>
+        <div className="right">
+          <Search />
+          <Draw />
+        </div>
+      </div>
     </div>
   );
 };

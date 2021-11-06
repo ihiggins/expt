@@ -21,9 +21,7 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
-
 import clipboardListener from "clipboard-event";
-import { cp } from "fs";
 
 const createWindow = (): void => {
   console.log("windowmade");
@@ -32,17 +30,18 @@ const createWindow = (): void => {
     height: 600,
     width: 800,
     title: "Expt",
-    icon:'./icon.png',
+    icon: "./icon.png",
     titleBarStyle: "hidden",
     resizable: false,
-
+    frame: false,
+    transparent: true,
     webPreferences: {
       //@ts-ignore
       enableRemoteModule: true,
       contextIsolation: false,
       nodeIntegration: true,
       devTools: true,
-      preload: "C:UsersisaacDesktopexptsrc/preload.js",
+      preload: "C:Users/isaac/Desktop/expt/src/preload.js",
     },
   });
 
@@ -53,35 +52,29 @@ const createWindow = (): void => {
   require("@electron/remote/main").enable(mainWindow.webContents);
   // To start listening
 
-
   ipcMain.on("min", (event, arg) => {
     mainWindow.hide();
   });
 
   ipcMain.on("copy", (event, arg) => {
-    clipboard.writeText(arg)
-
+    clipboard.writeText(arg);
   });
 
-  mainWindow.on('minimize',function(event){
+  mainWindow.on("minimize", function (event) {
     event.preventDefault();
     mainWindow.hide();
-});
+  });
 
-
-
-mainWindow.on('close', function (event) {
-
-      event.preventDefault();
-      mainWindow.hide();
-
-});
+  mainWindow.on("close", function (event) {
+    event.preventDefault();
+    mainWindow.hide();
+  });
 
   clipboardListener.startListening();
   clipboardListener.on("change", () => {
-    if(!mainWindow.isFocused()){
-    const text = clipboard.readText();
-    mainWindow.webContents.send("clippy", text);
+    if (!mainWindow.isFocused()) {
+      const text = clipboard.readText();
+      mainWindow.webContents.send("clippy", text);
     }
   });
 };
@@ -95,8 +88,8 @@ app.on("ready", createWindow);
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
-  console.log('wtf is this');
-  
+  console.log("wtf is this");
+
   if (process.platform !== "darwin") {
     app.quit();
   }
@@ -110,10 +103,6 @@ app.on("activate", () => {
   }
 });
 
-
-
 ipcMain.on("close", (event, arg) => {
   app.quit();
 });
-
-
