@@ -16,22 +16,22 @@ const Draw = () => {
     var async = async () => {
       if (clip !== "") {
         setLoading(true);
-        var data = await getAnswers(clip);
+        // var data = await getAnswers(clip);
     
-      // var data = [
-      //   { question: "test question", match: 85, answer: "this is the answer" },
-      //   {
-      //     question: `1) Scraping of data from the web can be accomplished by using which of the following tools:
-      // A. Microsoft Excel
-      // B. A python program
-      // C. A software tool specifically designed for scraping
-      // D. Copying a table of data from a web page and pasting into Excel
-      // E. All of the above are correct`,
-      //     match: 45,
-      //     answer: "this is the answer",
-      //   },
-      //   { question: "test question", match: 25, answer: "this is the answer" },
-      // ];
+      var data = [
+        { question: "test question", match: 85, answer: "this is the answer" },
+        {
+          question: `1) Scraping of data from the web can be accomplished by using which of the following tools:
+      A. Microsoft Excel
+      B. A python program
+      C. A software tool specifically designed for scraping
+      D. Copying a table of data from a web page and pasting into Excel
+      E. All of the above are correct`,
+          match: 45,
+          answer: "this is the answer",
+        },
+        { question: "test question", match: 25, answer: "this is the answer" },
+      ];
       //@ts-ignore
 
       setList(data);

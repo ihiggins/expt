@@ -5,6 +5,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import HorizontalRuleOutlinedIcon from '@mui/icons-material/HorizontalRuleOutlined';
 import { IconButton } from "@mui/material";
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import Logo from "./Logo";
 
 const Nav = () => {
   // let w = BrowserWindow.getCurrentWindow()
@@ -18,7 +19,10 @@ const Nav = () => {
 
   return (
     <div className="nav">
+      <div className="nav-control">
+      <Logo/>
       EXPT
+      </div>
       <div className="nav-control">
         <IconButton aria-label="close" color="primary" onClick={handleMin}>
           <HorizontalRuleOutlinedIcon />
@@ -36,3 +40,5 @@ const Nav = () => {
 };
 
 export default Nav;
+
+

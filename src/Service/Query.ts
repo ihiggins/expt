@@ -9,7 +9,6 @@ const getSnips = async (query: string) => {
     `https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=918d0b1fbc2166b72&q=${query}`
   );
 
-  console.log(response.status);
   if (response.status !== 200) return false;
   const body = await response.text();
 

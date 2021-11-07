@@ -170,7 +170,7 @@ $text-dark: #999ba5;
 
 .circular-chart {
   display: block;
-  stroke: rgb(33, 114, 229);
+  stroke: rgba(33, 115, 229, 0.63);
 }
 
 .circle-bg {
@@ -235,4 +235,11 @@ $text-dark: #999ba5;
   margin-bottom: 12px;
   border: $border-dark;
   overflow: hidden;
+}
+
+
+.logo{
+  width: 20px;
+  height: 20px;
+  padding-right: 8px;
 }
