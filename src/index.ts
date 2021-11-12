@@ -7,6 +7,7 @@ import {
   ipcRenderer,
 } from "electron";
 import ReactDOM from "react-dom";
+import clipboardListener from "clipboard-event";
 
 require("@electron/remote/main").initialize();
 
@@ -21,16 +22,12 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
-import clipboardListener from "clipboard-event";
-
 const createWindow = (): void => {
-  console.log("windowmade");
-  // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
     title: "Expt",
-    icon: "./icon.png",
+    icon: "./logo.png",
     titleBarStyle: "hidden",
     resizable: false,
     frame: false,
@@ -41,33 +38,25 @@ const createWindow = (): void => {
       contextIsolation: false,
       nodeIntegration: true,
       devTools: true,
-      preload: "C:Users/isaac/Desktop/expt/src/preload.js",
     },
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
   require("@electron/remote/main").enable(mainWindow.webContents);
-  // To start listening
 
+  //Global Events
   ipcMain.on("min", (event, arg) => {
-    mainWindow.hide();
+    mainWindow.minimize();
   });
-
+  ipcMain.on("close", (event, arg) => {
+    app.quit();
+  });
   ipcMain.on("copy", (event, arg) => {
     clipboard.writeText(arg);
-  });
-
-  mainWindow.on("minimize", function (event) {
-    event.preventDefault();
-    mainWindow.hide();
-  });
-
-  mainWindow.on("close", function (event) {
-    event.preventDefault();
-    mainWindow.hide();
   });
 
   clipboardListener.startListening();
@@ -79,17 +68,13 @@ const createWindow = (): void => {
   });
 };
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
+// initialization, create browser windows.
 app.on("ready", createWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
-  console.log("wtf is this");
-
   if (process.platform !== "darwin") {
     app.quit();
   }
@@ -101,8 +86,4 @@ app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
-});
-
-ipcMain.on("close", (event, arg) => {
-  app.quit();
 });
