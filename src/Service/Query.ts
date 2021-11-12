@@ -1,29 +1,25 @@
-const gKey = "AIzaSyDAF9mCr2qHKDU6-SFdyIG-06wcqY4TuFo";
-const cx = "918d0b1fbc2166b72&q";
+const gKey = process.env.REACT_APP_GOOGLE_KEY;
+const cx = process.env.REACT_APP_CX;
 
 import cheerio from "cheerio";
 import stringSimilarity from "string-similarity";
 import fetch from "node-fetch";
 
 const getSnips = async (query: string) => {
-
-
-
   try {
-   const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cx}=${query}`);
- 
-  console.log(response);
+    const response = await fetch(
+      `https://www.googleapis.com/customsearch/v1?key=${gKey}&cx=${cx}=${query}`
+    );
 
-  if (response.status !== 200) return false;
-  const body = await response.text();
-  return JSON.parse(body);
+    console.log(response);
 
-} catch (error) {
-  console.log(error);
-  return false
-}
-
-
+    if (response.status !== 200) return false;
+    const body = await response.text();
+    return JSON.parse(body);
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 };
 
 const getPage = async (query: string) => {
