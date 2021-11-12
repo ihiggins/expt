@@ -1,6 +1,6 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect, useState } from "react";
-import { useRecoilValue ,useSetRecoilState} from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { query, history } from "../Service/Atoms";
 import { getAnswers } from "../Service/Query";
 import Answer from "./Answer";
@@ -10,37 +10,21 @@ const Draw = () => {
   const clip = useRecoilValue(query);
   const [list, setList] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const setHistory = useSetRecoilState(history)
+  const setHistory = useSetRecoilState(history);
 
   useEffect(() => {
     var async = async () => {
       if (clip !== "") {
         setLoading(true);
-        // var data = await getAnswers(clip);
-    
-      var data = [
-        { question: "test question", match: 85, answer: "this is the answer" },
-        {
-          question: `1) Scraping of data from the web can be accomplished by using which of the following tools:
-      A. Microsoft Excel
-      B. A python program
-      C. A software tool specifically designed for scraping
-      D. Copying a table of data from a web page and pasting into Excel
-      E. All of the above are correct`,
-          match: 45,
-          answer: "this is the answer",
-        },
-        { question: "test question", match: 25, answer: "this is the answer" },
-      ];
-      //@ts-ignore
-
-      setList(data);
-      setLoading(false);
-      setHistory((currentState) => [
-        ...currentState,
-        {clip:clip,data:data},
-      ]);
-    }
+        var data = await getAnswers(clip);
+        //@ts-ignore
+        setList(data);
+        setLoading(false);
+        setHistory((currentState) => [
+          ...currentState,
+          { clip: clip, data: data },
+        ]);
+      }
     };
 
     async();
